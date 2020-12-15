@@ -22,11 +22,11 @@ window.onload = function() {
     top: getPosition(cl("IDE-container")[0]).y,
     height: cl("IDE-container")[0].offsetHeight,
   }
-  
+
   document.addEventListener("scroll", function() {
     var scr = window.scrollTop || window.pageYOffset;
     scr > header.offsetHeight ? navbar.classList.add("visible") : navbar.classList.remove("visible");
-    id("IDEBG").style.backgroundPosition = '100% ' + (scr - ide.top - (ide.height - window.innerHeight)/2)/3 + 'px';
+    if (scr > ide.top - window.innerHeight) id("IDEBG").style.marginTop = (scr - ide.top)/3 + 'px';
 
-  });
+  }, {passive:true});
 }

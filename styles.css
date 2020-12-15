@@ -2,7 +2,7 @@
   font-family: Raleway;
   src: url("materials/fonts/Raleway-VariableFont_wght.ttf"),
        url("materials/fonts/Raleway-Italic-VariableFont_wght.ttf");
-  font-variation-settings: 'wght' 100;
+  font-variation-settings: 'wght' 300;
 }
 @font-face {
   font-family: Roboto;
@@ -120,11 +120,6 @@ header .text .description {
   border-radius: 666px;
   background: white;
 }
-header .text .description span {
-  background: linear-gradient(45deg, var(--col1) 25%, var(--col2));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
 
 header .hdr-bg {
   position: absolute;
@@ -184,7 +179,7 @@ header #msg {
   color: var(--col1-dark);
 }
 #navbar .links a:hover:after {
-  min-height: 5px;
+  min-height: 3px;
   transform: scaleX(1);
 }
 #navbar .links .title {
@@ -223,48 +218,51 @@ section#main {
   padding: 30px 60px;
   margin: 80px 0px;
   z-index: 1;
-}
-#main #aboutMe .about-me, #main #aboutMe .not-about-me {width: 50%;}
-#main #aboutMe .about-me {
-  flex-direction: column;
   align-items: start;
 }
-#main #aboutMe .about-me #avatar {
+#main #aboutMe .about-me, #main #aboutMe .social-links {
+  width: 50%;
+  flex-direction: column;
+}
+#main #aboutMe .about-me {
+  align-items: start;
+}
+#main #aboutMe .circles {
   position: relative;
   width: 210px; height: 210px;
+  min-width: 210px;
   transition: transform 0.33s;
 }
-#main #aboutMe .about-me #avatar .image {
+#main #aboutMe .image {
   position: relative;
   width: 100%; height: 100%;
   border-radius: 50%;
-  background: 50% 50% / 100% url(materials/images/avatar.jpg);
   z-index: 1;
 }
-#main #aboutMe .about-me #avatar .circle {
+#main #aboutMe #avatar .image {
+  background: 50% 50% / 100% url(materials/images/avatar.jpg);
+}
+#main #aboutMe .circles .circle {
   border: none;
   background: linear-gradient(-45deg, var(--col1), var(--col2));
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
   z-index: 0;
 }
-#main #aboutMe .about-me #avatar .circle.f {
+#main #aboutMe .circles .circle.f {
   width: 205px;
   height: 205px;
   animation: circle-avatar-f 3s linear infinite;
 }
-#main #aboutMe .about-me #avatar .circle.s {
+#main #aboutMe .circles .circle.s {
   width: 205px;
   height: 205px;
   animation: circle-avatar-s 3s linear infinite;
   animation-delay: 1.5s;
 }
-#main #aboutMe .about-me .title span {
-  margin-left: 80px;
+#main #aboutMe .title span {
+  margin: 44px;
   color: var(--col1);
-  background: linear-gradient(45deg, var(--col1) 25%, var(--col2));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   font-size: 2.2em; font-weight: 900;
 }
 #main #aboutMe .about-me .description {
@@ -273,11 +271,49 @@ section#main {
   font-size: 1.2em;
 }
 
+#main #aboutMe .social-links {
+  justify-content: start;
+}
+#main #aboutMe .social-links .title {
+  height: 210px;
+}
+#main #aboutMe #social .image {
+  background: linear-gradient(-45deg, var(--col1), var(--col2));
+}
+#main #aboutMe .social-links .links {
+  width: 100%;
+  margin-top: 50px;
+}
+#main #aboutMe .social-links .links a {
+  margin: 0px 20px;
+  position: relative;
+  height: 128px;
+  color: var(--col2);
+  transition: color 0.25s;
+}
+#main #aboutMe .social-links .links a:hover {
+  color: var(--col1)
+}
+#main #aboutMe .social-links .links svg.outer {
+  position: relative;
+  height: 100%;
+  z-index: 1;
+}
+#main #aboutMe .social-links .links svg.inner {
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  z-index: 2;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 #main .IDE-container {
   width: 100%;
   height: 120vh;
   background: var(--col3);
   position: relative;
+  overflow: hidden;
 }
 #main .IDE-container div {
   position: absolute;
@@ -303,18 +339,16 @@ section#main {
 }
 #main .svg-container .title {
   font: 1.7em Roboto;
-  background: linear-gradient(45deg, var(--col1) 25%, var(--col2));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   opacity: 0.42;
   transition: 0.33s all;
   text-transform: uppercase;
+  z-index: 1;
 }
 #main .svg-container img {opacity: 0.42; transition: 0.33s all;}
 #main .svg-container .android {justify-content: flex-start; overflow: hidden;}
 #main .svg-container .web {justify-content: flex-end; overflow: hidden;}
 #main .svg-container .android img {height: 300px;}
-#main .svg-container .android .title {transform: translateX(-16%);}
+#main .svg-container .android .title {margin-left: -40px;}
 #main .svg-container .android:before {
   content: "";
   position: absolute;
@@ -334,26 +368,31 @@ section#main {
   transition: opacity 0.33s;
 }
 #main .svg-container .web img {height: 300px;}
-#main .svg-container .web .title {transform: translateX(16%);}
+#main .svg-container .web .title {margin-right: -40px;}
 #main .svg-container .android:hover:before, #main .svg-container .web:hover:before {opacity: 0.33;}
 #main .svg-container .android:hover img, #main .svg-container .web:hover img {transform: scale(1.1); opacity: 1;}
-#main .svg-container .android:hover .title, #main .svg-container .web:hover .title {transform: translateY(-100%); opacity: 1;}
-#main .svg-container .example-container {
+#main .svg-container .android:hover .title, #main .svg-container .web:hover .title {
+  margin: 0;
+  opacity: 1;
+}
+#main .svg-container .example-button {
   position: absolute;
-  width: 348px;
-  height: 94px;
-  top: 52%;
+  padding: 12px 28px;
+  font-size: 1.2em;
+  border-radius: 666px;
+  top: 58%;
   opacity: 0;
   transform: scale(0.8);
-  background: red;
+  box-shadow: 3px 3px 12px -8px black;
+  cursor: pointer;
   transition: all 0.33s ease;
 }
-#main .svg-container .android:hover .example-container, #main .svg-container .web:hover .example-container {
+#main .svg-container .android:hover .example-button, #main .svg-container .web:hover .example-button {
   transform: none;
   opacity: 1;
 }
-#main .svg-container .android .example-container {right: 10%;}
-#main .svg-container .web .example-container {left: 10%;}
+#main .svg-container .android .example-button {right: 30%; color: var(--col1-dark);}
+#main .svg-container .web .example-button {left: 30%; color: var(--col2-dark);}
 
 footer {
   position: relative;
@@ -379,4 +418,12 @@ footer .circles .circle.f.ii {
 footer .circles .circle.s {
   left: 85%;
   top: 100%;
+}
+
+.grad-text {
+  background: linear-gradient(45deg, var(--col1) 25%, var(--col2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
 }

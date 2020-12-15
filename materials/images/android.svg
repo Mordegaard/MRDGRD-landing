@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="1024pt" height="1024pt" style="isolation:isolate" viewBox="300 120 740 700" xmlns="http://www.w3.org/2000/svg">
+<svg width="1024pt" height="1024pt" style="isolation:isolate;" viewBox="300 120 740 700" xmlns="http://www.w3.org/2000/svg">
 <defs>
 <clipPath id="e">
 <rect width="1024" height="1024"/>
@@ -50,27 +49,25 @@
 </clipPath>
 <g clip-path="url(#j)">
 <g fill="none">
-<circle cx="610.8" cy="270.2" r="68" vector-effect="non-scaling-stroke"/>
-<clipPath id="i">
-<circle cx="610.8" cy="270.2" r="68" fill="#fff" vector-effect="non-scaling-stroke"/>
-</clipPath>
+
+
 <g clip-path="url(#i)">
 <mask id="d">
-<circle cx="610.8" cy="270.2" r="68" fill="#fff" vector-effect="non-scaling-stroke"/>
+<circle xmlns="http://www.w3.org/2000/svg" cx="610.8" cy="270.2" r="68" fill="#fff"/>
 </mask>
-<circle cx="610.8" cy="270.2" r="68" vector-effect="non-scaling-stroke"/>
-<circle cx="610.8" cy="270.2" r="68" mask="url(#d)" stroke="#fff" stroke-linecap="square" stroke-miterlimit="3" stroke-opacity="25" stroke-width="10" vector-effect="non-scaling-stroke"/>
-</g>
-<circle cx="800.8" cy="488.2" r="46" vector-effect="non-scaling-stroke"/>
+
+
+<circle xmlns="http://www.w3.org/2000/svg" cx="610.8" cy="270.2" r="68" mask="url(#d)" stroke="#fff" stroke-linecap="square" stroke-miterlimit="3" stroke-opacity="25" stroke-width="10"/></g>
+
 <clipPath id="h">
 <circle cx="800.8" cy="488.2" r="46" fill="#fff" vector-effect="non-scaling-stroke"/>
 </clipPath>
 <g clip-path="url(#h)">
 <mask id="c">
-<circle cx="800.8" cy="488.2" r="46" fill="#fff" vector-effect="non-scaling-stroke"/>
+<circle xmlns="http://www.w3.org/2000/svg" cx="800.8" cy="488.2" r="46" fill="#fff"/>
 </mask>
-<circle cx="800.8" cy="488.2" r="46" vector-effect="non-scaling-stroke"/>
-<circle cx="800.8" cy="488.2" r="46" mask="url(#c)" stroke="#fff" stroke-linecap="square" stroke-miterlimit="3" stroke-opacity="25" stroke-width="10" vector-effect="non-scaling-stroke"/>
+
+<circle xmlns="http://www.w3.org/2000/svg" cx="800.8" cy="488.2" r="46" mask="url(#c)" stroke="#fff" stroke-linecap="square" stroke-miterlimit="3" stroke-opacity="25" stroke-width="10"/>
 </g>
 </g>
 </g>
