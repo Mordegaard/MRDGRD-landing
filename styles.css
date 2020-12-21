@@ -28,6 +28,11 @@
   100% {transform: translate(-50%, -50%) scale(1.2); opacity: 0;}
 }
 
+@keyframes loading {
+  0% {transform: rotate(0deg);}
+  100% {transform: rotate(360deg);}
+}
+
 html {
   scrollbar-width: thin;
   scrollbar-color: #ffae82 var(--col3);
@@ -164,7 +169,8 @@ header #msg {
   padding: 0px 18px;
   height: 100%;
   position: relative;
-  transisition: color 0.2s;
+  transition: color 0.2s;
+  font-size: 18px;
 }
 #navbar .links a:after {
   content: "";
@@ -175,10 +181,10 @@ header #msg {
   transform: scaleX(0);
   background: linear-gradient(90deg, var(--col1), var(--col2));
 }
-#navbar .links a:hover {
+#navbar .links a:hover, #navbar .links a:focus {
   color: var(--col1-dark);
 }
-#navbar .links a:hover:after {
+#navbar .links a:hover:after, #navbar .links a:focus:after {
   min-height: 3px;
   transform: scaleX(1);
 }
@@ -263,7 +269,7 @@ section#main {
 #main #aboutMe .title span {
   margin: 44px;
   color: var(--col1);
-  font-size: 2.2em; font-weight: 900;
+  font: 900 2.2em Raleway;
 }
 #main #aboutMe .about-me .description {
   margin-top: 50px;
@@ -283,15 +289,16 @@ section#main {
 #main #aboutMe .social-links .links {
   width: 100%;
   margin-top: 50px;
+  flex-wrap: wrap;
 }
 #main #aboutMe .social-links .links a {
-  margin: 0px 20px;
+  margin: 20px;
   position: relative;
   height: 128px;
   color: var(--col2);
   transition: color 0.25s;
 }
-#main #aboutMe .social-links .links a:hover {
+#main #aboutMe .social-links .links a:hover, #main #aboutMe .social-links .links a:focus {
   color: var(--col1)
 }
 #main #aboutMe .social-links .links svg.outer {
@@ -310,7 +317,7 @@ section#main {
 
 #main .IDE-container {
   width: 100%;
-  height: 120vh;
+  height: 105vh;
   background: var(--col3);
   position: relative;
   overflow: hidden;
@@ -350,21 +357,13 @@ section#main {
 #main .svg-container .android img {height: 300px;}
 #main .svg-container .android .title {margin-left: -40px;}
 #main .svg-container .android:before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
   opacity: 0;
-  background: linear-gradient(90deg, var(--col1), transparent 50%);
+  background: 0% 0% / 50% no-repeat radial-gradient(at left, var(--col1), transparent 50%);
   transition: opacity 0.33s;
 }
 #main .svg-container .web:before {
-  content: "";
-  position: absolute;
-  top: 0; right: 0;
-  width: 100%; height: 100%;
   opacity: 0;
-  background: linear-gradient(-90deg, var(--col2), transparent 50%);
+  background: 100% 0% / 50% no-repeat radial-gradient(at right, var(--col2), transparent 50%);
   transition: opacity 0.33s;
 }
 #main .svg-container .web img {height: 300px;}
@@ -378,11 +377,12 @@ section#main {
 #main .svg-container .example-button {
   position: absolute;
   padding: 12px 28px;
-  font-size: 1.2em;
+  font: 1.2em Roboto;
   border-radius: 666px;
   top: 58%;
   opacity: 0;
   transform: scale(0.8);
+  background: white;
   box-shadow: 3px 3px 12px -8px black;
   cursor: pointer;
   transition: all 0.33s ease;
@@ -393,6 +393,158 @@ section#main {
 }
 #main .svg-container .android .example-button {right: 30%; color: var(--col1-dark);}
 #main .svg-container .web .example-button {left: 30%; color: var(--col2-dark);}
+
+#main #contacts {
+  margin: 60px 15%;
+}
+#main #contacts .contacts {
+  padding: 36px 12px;
+  background: white;
+  position: relative;
+}
+#main #contacts .contacts .border {
+  position: absolute;
+  top: -4px; left: -4px;
+  width: calc(100% + 8px);
+  height: calc(100% + 8px);
+  background: linear-gradient(-45deg, var(--col1), var(--col2));
+  border-radius: 56px;
+  z-index: 0;
+}
+#main #contacts .contacts .background {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: white;
+  border-radius: 52px;
+  z-index: 0;
+}
+
+#main #contacts .input-container {
+  position: relative;
+  width: fit-content;
+}
+
+#main #contacts .input-container input, #main #contacts .input-container textarea {
+  border: none;
+  background: white;
+  width: 100%;
+  padding: 9px 20px;
+  border-radius: 666px;
+  box-shadow: 2px 2px 12px -8px black;
+  outline: none;
+  font-size: 18px;
+  color: var(--col1-dark);
+  width: 300px;
+}
+
+#main #contacts .input-container .placeholder {
+  position: absolute;
+  top: 50%; left: 0;
+  transform: translateY(-50%);
+  pointer-events: none;
+  margin: 0px 20px;
+  color: var(--col1-dark);
+  opacity: 0.5;
+  transition: all 0.2s;
+}
+
+#main #contacts .input-container input:valid + .customization .placeholder {
+  transform: translateY(-250%);
+  font-size: 14px;
+  margin: 0px 10px;
+  opacity: 1;
+}
+
+#main #contacts .input-container .hint {
+  box-shadow: 2px 2px 12px -8px black;
+  position: absolute;
+  top: 50%; left: 100%;
+  transform: translateY(-50%);
+  margin-left: 30px;
+  border-radius: 12px;
+  width: 200px;
+  padding: 10px;
+  font-size: 0.66em;
+  color: var(--col1);
+  background: white;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.2s;
+}
+
+#main #contacts .input-container .hint span {
+  position: absolute;
+  top: 50%; left: 0%;
+  transform: translate(-100%, -50%);
+  color: white;
+  margin: 2px;
+}
+
+#main #contacts .input-container input:focus + .customization .hint, #main #contacts .input-container textarea:focus + .customization .hint {
+  margin-left: 10px;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#main #contacts .separator {
+  height: 36px;
+}
+
+#main #contacts .input-container textarea {
+  border-radius: 14px;
+  resize: none;
+  height: 200px;
+}
+
+#main #contacts .input-container textarea + .customization .placeholder {
+  top: 0;
+  transform: translateY(36%);
+}
+
+#main #contacts .input-container textarea:valid + .customization .placeholder {
+  transform: translateY(-120%);
+  font-size: 14px;
+  margin: 0px 10px;
+  opacity: 1;
+}
+
+#main #contacts .btn {
+  position: relative;
+  width: fit-content;
+  border: none;
+  border-radius: 666px;
+  background: linear-gradient(-45deg, var(--col1), var(--col2));
+  color: white;
+  padding: 10px 14px;
+  font-size: 1em;
+  margin: auto;
+  margin-top: 36px;
+  box-shadow: 3px 3px 12px -8px black;
+  text-align: center;
+}
+#main #contacts .btn:focus-within {
+  box-shadow: 0px 0px 0px 2px var(--col1-dark);
+}
+
+#main #contacts .btn button {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  border: none;
+  padding: 0;
+}
+
+#main #contacts .btn .loading svg {
+  margin-right: 12px;
+  display: none;
+}
+#main #contacts .btn.sending .loading svg {
+  display: block;
+}
+#main #contacts .btn.sended {
+  background: grey;
+}
 
 footer {
   position: relative;
@@ -420,10 +572,153 @@ footer .circles .circle.s {
   top: 100%;
 }
 
+#overflowContainer {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 99;
+  visibility: hidden;
+}
+#overflowContainer.visible {
+  visibility: visible;
+}
+#overflowContainer #darkFilter {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.36);
+}
+#overflowContainer .overflow {
+  position: relative;
+  flex-direction: column;
+  padding: 30px;
+  border-radius: 36px;
+  background: white;
+  box-shadow: 3px 3px 16px -8px black;
+  transform: scale(1.16);
+  transition: transform 0.33s;
+}
+#overflowContainer.visible .overflow {
+  transform: none;
+}
+
+#overflowContainer .overflow .title {
+  position: relative;
+  padding: 0px 30px 3px 30px;
+  font-size: 32px;
+  color: var(--col1-dark);
+  text-align: center;
+}
+#overflowContainer .overflow .title:before {
+  height: 3px;
+  top: 100%;
+  background: linear-gradient(90deg, var(--col1), var(--col2));
+}
+
+#overflowContainer .overflow #closeOverflow {
+  position: absolute;
+  top: 24px; right: 24px;
+  user-select: none;
+}
+#overflowContainer .overflow #closeOverflow:active {
+  transform: scale(0.85);
+}
+#overflowContainer .overflow #closeOverflow img {
+  width: 16px;
+  opacity: 0.5;
+}
+
+#overflowContainer .overflow .webExample, #overflowContainer .overflow .androidExample {
+  visibility: hidden;
+}
+#overflowContainer .overflow .visible {
+  visibility: inherit;
+}
+
+#overflowContainer .overflow .example-container {
+  align-items: start;
+}
+
+#overflowContainer .overflow .example-list {
+  margin-right: 42px;
+}
+#overflowContainer .overflow .list {
+  padding: 0;
+  list-style: none;
+}
+#overflowContainer .overflow .list label {
+  display: flex;
+  width: 100%;
+  margin: 5px 0px;
+}
+#overflowContainer .overflow .list span {
+  text-align: left;
+  display: inline-block;
+  width: 100%;
+  background: var(--col1);
+  color: white;
+  padding: 3px 8px;
+}
+#overflowContainer .overflow .list input {
+  opacity: 0;
+  width: 0.1px; height: 0.1px;
+  margin: 0;
+}
+#overflowContainer .overflow .list input:checked + span {
+  background: var(--col1-dark);
+}
+
+#overflowContainer .overflow .example-description .project {
+  flex-direction: column;
+  max-width: 542px;
+  color: var(--col1-dark);
+  display: none;
+}
+#overflowContainer .overflow .example-description .project.selected {
+  display: flex;
+}
+#overflowContainer .overflow .example-description img {
+  width: 100%;
+  box-shadow: 3px 3px 14px -6px black;
+}
+#overflowContainer .overflow .example-description p {
+  font-size: 28px;
+  margin: 10px 0px;
+  padding: 0;
+}
+#overflowContainer .overflow .example-description a {
+  margin-top: 12px;
+  padding: 8px 16px;
+  border-radius: 666px;
+  box-shadow: 3px 3px 12px -8px black;
+  background: white;
+}
+#overflowContainer .overflow .example-description a:hover {
+  background: linear-gradient(45deg, var(--col1), var(--col2));
+  color: white;
+}
+
+#overflowContainer #emptyExample {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--col1);
+  padding: 6px 14px;
+  border-radius: 14px;
+  border: 3px dashed currentColor;
+}
+
 .grad-text {
   background: linear-gradient(45deg, var(--col1) 25%, var(--col2));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   text-fill-color: transparent;
+}
+
+.fsps:before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
 }

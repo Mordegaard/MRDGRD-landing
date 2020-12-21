@@ -3,6 +3,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Mordegaard</title>
     <link href="styles.css" rel="stylesheet"></link>
+    <script src='https://www.gstatic.com/firebasejs/7.9.1/firebase-app.js'></script>
+    <script src='https://www.gstatic.com/firebasejs/7.9.1/firebase-database.js'></script>
+    <script src='https://www.gstatic.com/firebasejs/7.17.2/firebase-auth.js'></script>
+    <script src='https://www.gstatic.com/firebasejs/7.17.2/firebase-functions.js'></script>
     <script src="script.js" type="text/javascript"></script>
   </head>
   <body>
@@ -24,8 +28,8 @@
       <div class="links flexed">
         <span class="title flexed"><svg xmlns="http://www.w3.org/2000/svg" width="379.494" height="213.088" viewBox="0 0 379.494 213.088"> <defs> <linearGradient id="grad" x1="1" x2="0" y1="0" y2="1"> <stop offset="0%" stop-color="var(--col1)"/> <stop offset="100%" stop-color="var(--col2)"/> </linearGradient> <style> .cls-1 { fill: url(#grad); fill-rule: evenodd; } </style> </defs> <path id="MRDGRD1" data-name="MRDGRD1" class="cls-1" d="M191.152,160.761a45.563,45.563,0,0,0-14.021-16.024q-8.48-5.85-20.8-5.855a37.181,37.181,0,0,0-21.879,6.934q-9.865,6.933-14.175,21.416L66.968,348.424h62.554l19.413-71.8q4.623-17.563,8.012-30.969t5.855-25.73q2.463,5.243,5.085,10.785t6.163,12.172q3.538,6.63,7.857,14.945t9.861,18.8L219.5,328.7a55.171,55.171,0,0,0,8.166,12.171,36.306,36.306,0,0,0,8.474,6.934,26.858,26.858,0,0,0,9.244,3.235,75.825,75.825,0,0,0,21.571,0,26.931,26.931,0,0,0,9.244-3.235,36.408,36.408,0,0,0,8.474-6.934,55.346,55.346,0,0,0,8.166-12.171l27.734-51.77q10.471-20.026,16.948-33.126t11.71-23.881q2.462,12.639,5.854,25.884t8.32,30.815l19.414,71.8H446.3L394.222,167.232q-4.318-14.481-14.02-21.416a36.5,36.5,0,0,0-21.725-6.934q-12.639,0-21.108,6.009a47.814,47.814,0,0,0-14.021,15.87l-32.972,58.548q-6.781,12.018-11.864,20.955t-8.936,16.177q-3.857,7.245-6.779,12.943T257.4,280.631q-2.773-5.547-5.7-11.4t-6.779-12.943q-3.857-7.084-8.936-16.177T224.124,219ZM224.091,204Q191.182,147,257,147t32.909,57Q257,261,224.091,204Z" transform="translate(-66.894 -138.8)"/> </svg> </span>
         <a href="#aboutMe">Обо мне</a>
-        <a href="#priceList">Примеры работ</a>
-        <a href="#contacts">Контакты</a>
+        <a href="#example">Примеры работ</a>
+        <a href="#contacts">Связь</a>
       </div>
     </div>
     <section id="main" class="flexed">
@@ -56,7 +60,7 @@
             </div>
           </div>
           <div class="links flexed">
-            <a href="https://www.instagram.com/mordegaard/" target="_blank">
+            <a href="https://www.instagram.com/mordegaard/" target="_blank" title="instagram">
               <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="outer" viewBox="-10 -10 468 468" version="1.1">
                 <path stroke="currentColor" stroke-width="18px" stroke-alignment="inside" fill="transparent" fill-rule="evenodd" d="M9.635 132.808C24.782 59.782 71.388 19.109 144.085 6.822c53.74-9.081 107.5-9.196 161.15.255 74.852 13.185 119.85 56.23 134.185 130.36 11.075 57.29 11.249 115.191-.174 172.427-15.324 72.52-63.132 117.285-135.561 129.527-53.74 9.08-107.5 9.195-161.15-.255-74.852-13.186-120.05-58.38-134.384-132.509-11.64-57.668-10.52-115.935 1.484-173.82z" id="path-1"/>
               </svg>
@@ -64,7 +68,7 @@
                 <path fill="currentColor" d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"></path>
               </svg>
             </a>
-            <a href="https://vk.com/mordegaard" target="_blank">
+            <a href="https://vk.com/mordegaard" target="_blank" title="Вконтакте">
               <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="outer" viewBox="-10 -10 468 468" version="1.1">
                 <path stroke="currentColor" stroke-width="18px" stroke-alignment="inside" fill="transparent" fill-rule="evenodd" d="M9.635 132.808C24.782 59.782 71.388 19.109 144.085 6.822c53.74-9.081 107.5-9.196 161.15.255 74.852 13.185 119.85 56.23 134.185 130.36 11.075 57.29 11.249 115.191-.174 172.427-15.324 72.52-63.132 117.285-135.561 129.527-53.74 9.08-107.5 9.195-161.15-.255-74.852-13.186-120.05-58.38-134.384-132.509-11.64-57.668-10.52-115.935 1.484-173.82z" id="path-1"/>
               </svg>
@@ -72,13 +76,19 @@
                 <path fill="currentColor" d="M545 117.7c3.7-12.5 0-21.7-17.8-21.7h-58.9c-15 0-21.9 7.9-25.6 16.7 0 0-30 73.1-72.4 120.5-13.7 13.7-20 18.1-27.5 18.1-3.7 0-9.4-4.4-9.4-16.9V117.7c0-15-4.2-21.7-16.6-21.7h-92.6c-9.4 0-15 7-15 13.5 0 14.2 21.2 17.5 23.4 57.5v86.8c0 19-3.4 22.5-10.9 22.5-20 0-68.6-73.4-97.4-157.4-5.8-16.3-11.5-22.9-26.6-22.9H38.8c-16.8 0-20.2 7.9-20.2 16.7 0 15.6 20 93.1 93.1 195.5C160.4 378.1 229 416 291.4 416c37.5 0 42.1-8.4 42.1-22.9 0-66.8-3.4-73.1 15.4-73.1 8.7 0 23.7 4.4 58.7 38.1 40 40 46.6 57.9 69 57.9h58.9c16.8 0 25.3-8.4 20.4-25-11.2-34.9-86.9-106.7-90.3-111.5-8.7-11.2-6.2-16.2 0-26.2.1-.1 72-101.3 79.4-135.6z"></path>
               </svg>
             </a>
-            <a href="https://mordegaard.blogspot.com/" target="_blank">
+            <a href="https://mordegaard.blogspot.com/" target="_blank" title="Мой блог">
               <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="outer" viewBox="-10 -10 468 468" version="1.1">
                 <path stroke="currentColor" stroke-width="18px" stroke-alignment="inside" fill="transparent" fill-rule="evenodd" d="M9.635 132.808C24.782 59.782 71.388 19.109 144.085 6.822c53.74-9.081 107.5-9.196 161.15.255 74.852 13.185 119.85 56.23 134.185 130.36 11.075 57.29 11.249 115.191-.174 172.427-15.324 72.52-63.132 117.285-135.561 129.527-53.74 9.08-107.5 9.195-161.15-.255-74.852-13.186-120.05-58.38-134.384-132.509-11.64-57.668-10.52-115.935 1.484-173.82z" id="path-1"/>
               </svg>
               <svg aria-hidden="true" focusable="false" class="inner" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                 <path fill="currentColor" d="M446.6 222.7c-1.8-8-6.8-15.4-12.5-18.5-1.8-1-13-2.2-25-2.7-20.1-.9-22.3-1.3-28.7-5-10.1-5.9-12.8-12.3-12.9-29.5-.1-33-13.8-63.7-40.9-91.3-19.3-19.7-40.9-33-65.5-40.5-5.9-1.8-19.1-2.4-63.3-2.9-69.4-.8-84.8.6-108.4 10C45.9 59.5 14.7 96.1 3.3 142.9 1.2 151.7.7 165.8.2 246.8c-.6 101.5.1 116.4 6.4 136.5 15.6 49.6 59.9 86.3 104.4 94.3 14.8 2.7 197.3 3.3 216 .8 32.5-4.4 58-17.5 81.9-41.9 17.3-17.7 28.1-36.8 35.2-62.1 4.9-17.6 4.5-142.8 2.5-151.7zm-322.1-63.6c7.8-7.9 10-8.2 58.8-8.2 43.9 0 45.4.1 51.8 3.4 9.3 4.7 13.4 11.3 13.4 21.9 0 9.5-3.8 16.2-12.3 21.6-4.6 2.9-7.3 3.1-50.3 3.3-26.5.2-47.7-.4-50.8-1.2-16.6-4.7-22.8-28.5-10.6-40.8zm191.8 199.8l-14.9 2.4-77.5.9c-68.1.8-87.3-.4-90.9-2-7.1-3.1-13.8-11.7-14.9-19.4-1.1-7.3 2.6-17.3 8.2-22.4 7.1-6.4 10.2-6.6 97.3-6.7 89.6-.1 89.1-.1 97.6 7.8 12.1 11.3 9.5 31.2-4.9 39.4z"></path>
               </svg>
+            </a>
+            <a href="https://github.com/Mordegaard" target="_blank" title="GitHub">
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="outer" viewBox="-10 -10 468 468" version="1.1">
+                <path stroke="currentColor" stroke-width="18px" stroke-alignment="inside" fill="transparent" fill-rule="evenodd" d="M9.635 132.808C24.782 59.782 71.388 19.109 144.085 6.822c53.74-9.081 107.5-9.196 161.15.255 74.852 13.185 119.85 56.23 134.185 130.36 11.075 57.29 11.249 115.191-.174 172.427-15.324 72.52-63.132 117.285-135.561 129.527-53.74 9.08-107.5 9.195-161.15-.255-74.852-13.186-120.05-58.38-134.384-132.509-11.64-57.668-10.52-115.935 1.484-173.82z" id="path-1"/>
+              </svg>
+              <svg aria-hidden="true" focusable="false" class="inner" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg>
             </a>
           </div>
         </div>
@@ -90,16 +100,55 @@
           Позвольте приложениям решать задачи вместо вас.
         </div>
       </div>
-      <div class="svg-container flexed">
-        <div class="android flexed">
+      <div class="svg-container flexed" id="example">
+        <div class="android fsps flexed">
           <img src="materials/images/android.svg"/>
           <span class="title grad-text">Андроид-проекты</span>
-          <div class="example-button" id="webProjects">Примеры</div>
+          <div class="example-button" id="webProjects">Примеры [0]</div>
         </div>
-        <div class="web flexed">
+        <div class="web fsps flexed">
           <span class="title grad-text">Веб-проекты</span>
           <img src="materials/images/computer.svg"/>
-          <div class="example-button" id="webProjects">Примеры</div>
+          <div class="example-button" id="webProjects">Примеры [2]</div>
+        </div>
+      </div>
+      <div id="contacts">
+        <div class="contacts flexed">
+          <div class="border"></div>
+          <div class="background flexed"></div>
+          <form name="form" id="sendMessage">
+            <div class="input-container">
+              <input name="contacts" type="text" maxlength="128" autocomplete="off" title="Оставьте в этом поле ваши контактные данные" required/>
+              <div class="customization">
+                <span class="placeholder">Контактная информация</span>
+                <div class="hint">
+                  Email | номер телефона (Viber, Telegram, звонок) | Discord...
+                  <span>◀</span>
+                </div>
+              </div>
+            </div>
+            <div class="separator"></div>
+            <div class="input-container">
+              <textarea name="description" type="text" maxlength="1024" title="Оставьте в этом поле ваши контактные данные" required/></textarea>
+              <div class="customization">
+                <span class="placeholder">Сообщение</span>
+                <div class="hint">
+                  Лаконично опишите суть вашего обращения
+                  <span>◀</span>
+                </div>
+              </div>
+            </div>
+            <label class="btn flexed">
+              <button name="submit">Отправить</button>
+                <div class="loading">
+                  <svg height="18" width="18" style="animation: loading 1s linear infinite;">
+	                   <circle class="svg-circle" cx="9" cy="9" r="8" stroke="rgba(255,255,255,0.66)" stroke-dasharray=360 stroke-dashoffset=340 stroke-width="2" fill-opacity="0"></circle>
+                   </svg>
+                </div>
+                Отправить
+            </label>
+          </form>
+          <div class="circle"><img src="materials/icons/list.svg"/></div>
         </div>
       </div>
     </section>
@@ -114,5 +163,49 @@
         Автор не несёт цели кого-либо оскорбить, но если вы оскорбились - так и было задумано.
       </span>
     </footer>
+    <section id="overflowContainer" class="flexed">
+      <div id="darkFilter"></div>
+      <div class="overflow flexed">
+        <p class="title fsps">TITLE</p>
+        <div id="closeOverflow"><img src="materials/icons/close.svg"/></div>
+        <div class="example-container flexed">
+          <div class="example-list">
+            <ul class="list webExample">
+              <li class="item webItem">
+                <label><input type="radio" name="web" checked/><span>Улучшенная новая вкладка</span></label>
+              </li>
+              <li class="item webItem">
+                <label><input type="radio" name="web"/><span>Paint</span></label>
+              </li>
+            </ul>
+            <div class="flexed list androidExample">
+              <div id="emptyExample" class="flexed">Нет доступных проектов</div>
+            </div>
+          </div>
+          <div class="example-description">
+            <div class="description webExample">
+              <div class="project flexed selected">
+                <img src="materials/images/new-tab.jpg"/>
+                <p>Улучшенная новая вкладка</p>
+                <span>
+                  Улучшенная "Новая вкладка" для вашего браузера.<br />
+                  Использует Local Storage для хранения закладок.
+                </span>
+                <a href="https://github.com/Mordegaard/Updated-New-Page" target="_blank">Github</a>
+              </div>
+              <div class="project flexed">
+                <img src="materials/images/paint.jpg"/>
+                <p>Paint</p>
+                <span>
+                  Автономный графический редактор для простого редактирования изображений.
+                </span>
+                <a href="https://github.com/Mordegaard/justPaint" target="_blank">Github</a>
+              </div>
+            </div>
+            <div class="description androidExample"></div>
+          </div>
+        </div>
+      </div>
+    </section>
   </body>
 </html>
