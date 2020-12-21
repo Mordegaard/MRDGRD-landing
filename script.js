@@ -78,6 +78,20 @@ window.onload = function() {
     });
   });
 
+  [].forEach.call(cl("copy"), function(el, ind) {
+    el.addEventListener("click", function(){
+      var block = this;
+      var text = block.getElementsByClassName("copied-text")[0].innerText;
+      navigator.clipboard.writeText(text).then(function() {
+        console.log(`copied ${text}`);
+        block.classList.add("copied");
+        setTimeout(()=>{block.classList.remove("copied")},500);
+      }, function() {
+        console.log("not copied");
+      });
+    });
+  });
+
   id("darkFilter").addEventListener("click", closeOverflow);
   id("closeOverflow").addEventListener("click", closeOverflow);
 
