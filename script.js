@@ -45,7 +45,7 @@ window.onload = function() {
     scr > header.offsetHeight ? navbar.classList.add("visible") : navbar.classList.remove("visible");
     if (scr > ide.top - window.innerHeight) id("IDEBG").style.marginTop = (scr - ide.top)/3 + 'px';
 
-  }, {passive:true});
+  }, true);
 
   [].forEach.call(cl("example-button"), function(el, ind) {
     el.addEventListener("click", function(){
