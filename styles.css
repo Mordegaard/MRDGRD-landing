@@ -80,7 +80,9 @@ header {
   text-align: center;
   position: relative;
   overflow: hidden;
+  visibility: hidden;
 }
+.loaded header {visibility: visible;}
 .circles .circle {
   position: absolute;
   border-radius: 50%;
@@ -204,7 +206,9 @@ section#main {
   position: relative;
   flex-direction: column;
   justify-content: start;
+  visibility: hidden;
 }
+.loaded section#main {visibility: visible;}
 
 #main .rounded-border {
   content: "";
@@ -745,7 +749,7 @@ footer .circles .circle.s {
   padding: 0;
 }
 #overflowContainer .overflow .example-description a {
-  margin-top: 12px;
+  margin: 12px 6px 0px 6px;
   padding: 8px 16px;
   border-radius: 666px;
   box-shadow: 3px 3px 12px -8px black;
@@ -781,18 +785,49 @@ footer .circles .circle.s {
   width: 100%; height: 100%;
 }
 
-@media only screen and (max-device-width: 900px) {
+#loading {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(180deg, var(--col1), var(--col2));
+  z-index: 100;
+  transition: opacity 0.5s;
+}
+#loading .centered {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+}
+#loading .arc div {
+  background: white;
+  border-radius: 50%;
+  width: 142px; height: 142px;
+  transform: scale(0.5);
+  opacity: 0;
+  transition: all 0.5s;
+}
+.loaded #loading .arc div {
+  transform: none;
+  opacity: 1;
+}
+#loading .logo svg {
+  height: 200px;
+  transform: rotate(-135deg);
+  transition: transform 0.5s linear;
+}
 
-  body {font-size: 1.5vw;}
+@media (max-width: 900px) {
+
+  body {font-size: 10px;}
 
   header.flexed {align-items: flex-end;}
   header .text {
-    font-size: 2.5em;
+    font-size: 1.5em;
     margin-bottom: 66%;
   }
+  header .circles .circle.f {left: -50%;}
   header .text .description {
     font-size: 1.85em;
-    margin-top: 52px;
   }
   header .circles .circle.s {top: 62%;}
   header .hdr-bg {
@@ -800,8 +835,18 @@ footer .circles .circle.s {
     top: 33%;
   }
 
-  #main #aboutMe {flex-direction: column;}
-  #main #aboutMe .about-me .description {font-size: 2em;}
+  #main .rounded-border div {min-width: 200%;}
+
+  #main #aboutMe {
+    flex-direction: column;
+    width: calc(100% - 60px);
+    padding: 30px 30px;
+  }
+  #main #aboutMe .circles {
+    height: 156px; min-width: 156px; width: 156px;
+  }
+  #main #aboutMe #social .image {font-size: 1.5em;}
+  #main #aboutMe .about-me .description {font-size: 1.5em;}
   #main #aboutMe .about-me, #main #aboutMe .social-links {
     width: 100%;
     font-size: 1.5em;
@@ -811,39 +856,38 @@ footer .circles .circle.s {
     margin: 32px 0px;
   }
   #main #aboutMe .title span {
-    font-size: 3em;
-    margin: 32px;
-  }
-  #main #aboutMe .circles {
-    min-width: 300px; height: 300px;
+    font-size: 2.5em;
+    margin: 20px;
   }
   #main #aboutMe .social-links .links {margin-top: 0px;}
-  #main #aboutMe .social-links .links a {height: 166px;}
-  #main #aboutMe .social-links .links svg.inner {
-    width: 92px; height: 92px;
-  }
 
   #main .IDE-container .text {
     top: 50%; left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 5em;
+    font-size: 3em;
     width: 70%;
   }
 
   #navbar {
-    height: 116px;
-    font-size: 2.5em;
+    height: 54px;
+    font-size: 1.5em;
     box-shadow: 0px 2px 36px -12px rgba(0,0,0,0.66)
   }
-  #navbar .links a {font-size: 1.2em;}
-  #navbar .links a:hover:after, #navbar .links a:focus:after {min-height: 8px;}
+  #navbar .links .title {margin: 0;}
+  #navbar .links a {
+    font-size: 1.2em;
+    padding: 0px 10px;
+  }
 
   #main .svg-container {flex-direction: column;}
-  #main .svg-container .android, #main .svg-container .web {width: 100%;}
-  #main .svg-container .android img {height: 480px;}
-  #main .svg-container .web img {height: 420px;}
-  #main .svg-container .android .title, #main .svg-container .web .title {font-size: 3.75em;}
-  #main .svg-container .example-button {font-size: 3.5em;}
+  #main .svg-container .android, #main .svg-container .web {
+    width: 100%;
+    padding: 60px 0px;
+  }
+  #main .svg-container .android img {height: 210px;}
+  #main .svg-container .web img {height: 180px;}
+  #main .svg-container .android .title, #main .svg-container .web .title {font-size: 2.2em;}
+  #main .svg-container .example-button {font-size: 2em;}
   #main .svg-container .android .example-button {right: 5%;}
   #main .svg-container .web .example-button {left: 5%;}
 
@@ -852,28 +896,33 @@ footer .circles .circle.s {
     width: 100%;
   }
   #main #contacts .contacts {
-    border-radius: 64px 64px 0px 0px;
+    border-radius: 32px 32px 0px 0px;
     flex-direction: column;
     width: 100%;
   }
-  #main #contacts .title {font-size: 4em;}
+  #main #contacts .title {font-size: 3em;}
   #main #contacts form {
     width: 100%;
     padding: 0;
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin-top: 120px;
+    margin-top: 40px;
   }
   #main #contacts .input-container {width: 85%;}
   #main #contacts .input-container input, #main #contacts .input-container textarea {
-    font-size: 3em;
+    font-size: 2em;
     width: calc(100% - 40px);
     padding: 18px 24px;
     box-shadow: 4px 4px 22px -14px black;
   }
-  #main #contacts .input-container textarea {height: 600px;}
-  #main #contacts .input-container .placeholder {font-size: 3em;}
+  #main #contacts .input-container textarea {height: 300px;}
+  #main #contacts .input-container .placeholder {
+    font-size: 2em;
+  }
+  #main #contacts .input-container textarea + .customization .placeholder {
+    transform: translateY(5%, 80%);
+  }
   #main #contacts .input-container input:valid + .customization .placeholder {
     font-size: 2.2em;
     transform: translateY(-220%)
@@ -884,51 +933,55 @@ footer .circles .circle.s {
     left: 50%;
     bottom: 100%;
     transform: translateX(-50%);
-    font-size: 2.5em;
+    font-size: 2em;
     width: 75%;
-    margin-left: 0;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
   }
   #main #contacts .input-container .hint span {
     top: 100%; left: 50%;
-    transform: translate(-50%, -30%) rotate(-90deg);
+    transform: translate(-50%, -32%) rotate(-90deg);
   }
-  #main #contacts .separator {height: 72px;}
   #main #contacts .btn {
-    font-size: 3em;
-    padding: 20px 30px;
-    box-shadow: 4px 4px 22px -14px black;
+    font-size: 2em;
   }
   #main #contacts .description {
-    margin: 120px 0 0 0;
+    margin: 10px 0 0 0;
     font-size: 2em;
-    padding: 40px;
+    padding: 12px;
   }
   #main #contacts .description li {
-    padding: 12px 28px;
-    margin: 18px 0px;
+    padding: 10px 20px;
+    margin: 16px 0px;
   }
-  #main #contacts .description .hint {padding: 20px 20px;}
+  #main #contacts .description .hint {
+    padding: 4px 4px;
+    margin-left: 3px;
+  }
   #main #contacts .description li:hover .hint .text {display: none;}
   #main #contacts .description .hint .icon {
-    width: 40px; height: 40px;
+    width: 24px; height: 24px;
+  }
+  #main #contacts .description ul {
+    max-width: 100%;
+    padding: 0;
+    overflow: hidden;
   }
 
   footer {
     font-size: 2em;
-    padding: 140px 0px;
+    padding: 100px 0px;
   }
   footer span {padding: 0px 20px;}
 
-  #overflowContainer .overflow {width: 100%;}
+  #overflowContainer .overflow {
+    width: 100%;
+    padding: 20px 0px;
+    border-radius: 26px;
+  }
   #overflowContainer .overflow .title {
-    font-size: 4em;
+    font-size: 3em;
     margin: 20px 0px;
   }
-  #overflowContainer .overflow #closeOverflow {
-    top: 36px; right: 36px;
-  }
-  #overflowContainer .overflow #closeOverflow img {width: 36px;}
   #overflowContainer .overflow .example-container {
     flex-direction: column;
     align-items: center;
@@ -940,19 +993,22 @@ footer .circles .circle.s {
     flex-wrap: wrap;
   }
   #overflowContainer .overflow .list li {
-    margin: 0px 10px;
-    font-size: 3em;
+    margin: 0px 6px;
+    font-size: 2em;
   }
   #overflowContainer .overflow .webExample, #overflowContainer .overflow .androidExample, #overflowContainer .overflow .example-description {width: 100%;}
   #overflowContainer .overflow .example-description .project {max-width: none;}
-  #overflowContainer .overflow .example-description p, #overflowContainer .overflow .example-description span, #overflowContainer .overflow .example-description a {font-size: 3em;}
+  #overflowContainer .overflow .example-description p, #overflowContainer .overflow .example-description span, #overflowContainer .overflow .example-description a {
+    font-size: 2em;
+    padding: 0px 20px;
+  }
   #overflowContainer .overflow .example-description p {font-weight: 900;}
   #overflowContainer .overflow .example-description a {
-    padding: 18px 32px;
+    padding: 10px 24px;
     box-shadow: 5px 5px 22px -14px black;
   }
   #overflowContainer #emptyExample {
-    font-size: 4em;
+    font-size: 3em;
     text-align: center;
     border-radius: 32px;
     border-width: 6px;

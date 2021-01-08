@@ -11,6 +11,19 @@ var firebaseConfig = {
   firebase.initializeApp(firebaseConfig);
 
 window.onload = function() {
+
+  document.body.classList.add("loaded");
+  setTimeout(()=>{
+    id("loading").children[0].style.display = "none";
+    id("loading").children[1].style.display = "none";
+    id("loadingLogo").style.transform = "scale(0.5)";
+    id("loadingLogoAnimation").beginElement(); console.log(id("loading").getElementsByTagName("svg")[0])
+    setTimeout(()=>{
+      id("loading").style.opacity = "0";
+      setTimeout(()=>{id("loading").style.display = "none"}, 500);
+    }, 1500);
+  }, 500);
+
   function id(bl) {
     return document.getElementById(bl);
   }
