@@ -970,7 +970,9 @@ footer .circles .circle.s {
   footer {
     font-size: 2em;
     padding: 100px 0px;
+    visibility: hidden;
   }
+  .loaded footer {visibility: visible;}
   footer span {padding: 0px 20px;}
 
   #overflowContainer .overflow {
