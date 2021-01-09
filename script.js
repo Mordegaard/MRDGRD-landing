@@ -16,12 +16,20 @@ window.onload = function() {
   setTimeout(()=>{
     id("loading").children[0].style.display = "none";
     id("loading").children[1].style.display = "none";
-    id("loadingLogo").style.transform = "scale(0.5)";
-    id("loadingLogoAnimation").beginElement(); console.log(id("loading").getElementsByTagName("svg")[0])
+    id("loadingLogo").style.transform = "none";
+    id("loadingLogoAnimation").beginElement(); console.log(id("loading").getElementsByTagName("svg")[0]);
+    setTimeout(() => {
+      var y = id("headerLogo").offsetTop;
+      var x = id("headerLogo").offsetLeft;
+      id("loading").getElementsByClassName("logo")[0].style.top = y + 'px';
+      id("loading").getElementsByClassName("logo")[0].style.left = x + 'px';
+      id("loading").getElementsByClassName("logo")[0].style.transform = "none";
+      console.log(x, y);
+    }, 666);
     setTimeout(()=>{
       id("loading").style.opacity = "0";
       setTimeout(()=>{id("loading").style.display = "none"}, 500);
-    }, 1500);
+    }, 1000);
   }, 500);
 
   function id(bl) {

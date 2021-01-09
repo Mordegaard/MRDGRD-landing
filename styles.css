@@ -74,7 +74,7 @@ a {outline: none;}
 
 header {
   width: 100%;
-  height: calc(100vh - 56px);
+  height: 100vh;
   background: linear-gradient(180deg, var(--col1), var(--col2));
   color: white;
   text-align: center;
@@ -104,7 +104,7 @@ header .circles .circle.s {
   right: -200px;
 }
 header .circles .circle.i {
-  animation-delay: 2s;
+  animation-delay: 2.5s;
 }
 
 header .text {
@@ -221,6 +221,12 @@ section#main {
   background: white;
   min-width: 150%; height: 100%;
   border-radius: 50%;
+  transform: translateY(100%);
+  transition: transform 0.5s;
+  transition-delay: 1.2s;
+}
+.loaded #main .rounded-border div {
+  transform: none;
 }
 
 #main #aboutMe {
@@ -810,15 +816,24 @@ footer .circles .circle.s {
   transform: none;
   opacity: 1;
 }
+#loading .logo {
+  transition: all 0.5s;
+}
 #loading .logo svg {
-  height: 200px;
-  transform: rotate(-135deg);
+  width: 180px;
+  height: 101px;
+  transform: rotate(-135deg) scale(2);
   transition: transform 0.5s linear;
 }
 
 @media (max-width: 900px) {
 
   body {font-size: 10px;}
+
+  #loading .logo svg {
+    width: 81px; height: 45px;
+    transform: rotate(-135deg) scale(4);
+  }
 
   header.flexed {align-items: flex-end;}
   header .text {
@@ -835,7 +850,9 @@ footer .circles .circle.s {
     top: 33%;
   }
 
-  #main .rounded-border div {min-width: 200%;}
+  #main .rounded-border div {
+    min-width: 200%;
+  }
 
   #main #aboutMe {
     flex-direction: column;
