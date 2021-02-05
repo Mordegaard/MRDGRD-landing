@@ -63,7 +63,7 @@ window.onload = function() {
   var navbar = id("navbar");
   var overflow = id("overflowContainer");
   var example;
-  window.screen.width > 800 ? example = cl("example-button") : example = [cl("web")[0], cl("android")[0]];
+  window.screen.width > 800 ? example = cl("example-button") : example = [cl("android")[0], cl("web")[0]];
   var ide = {
     bg: id("IDEBG"),
     overflow: id("IDEoverflow"),
@@ -99,7 +99,7 @@ window.onload = function() {
       if (scr > ide.top && scr < ide.top + ide.height) {
         document.body.classList.add("overflow-start");
         ide.overflow.style.opacity = (scr-ide.top)/ide.top*2-0.15;
-        ide.bg.style.backgroundSize = (100 + (scr-ide.top)/10) + '%';
+        window.screen.width > 800 ? ide.bg.style.backgroundSize = (100 + (scr-ide.top)/10) + '%' : ide.bg.style.backgroundSize = 'auto ' + (100 + (scr-ide.top)/10) + '%';
       }
       else {
         ide.overflow.style.opacity = 0;

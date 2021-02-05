@@ -1044,9 +1044,10 @@ footer .circles .circle.s {
     flex-wrap: wrap;
   }
   #overflowContainer .overflow .list li {
-    margin: 0px 6px;
+    margin: 0px 4px;
     font-size: 2em;
   }
+  #overflowContainer .overflow .list label {margin: 4px 0px;}
   #overflowContainer .overflow .webExample, #overflowContainer .overflow .androidExample, #overflowContainer .overflow .example-description {width: 100%;}
   #overflowContainer .overflow .example-description .project {max-width: none;}
   #overflowContainer .overflow .example-description p, #overflowContainer .overflow .example-description span, #overflowContainer .overflow .example-description a {
