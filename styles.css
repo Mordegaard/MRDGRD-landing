@@ -104,7 +104,7 @@ header .circles .circle.s {
   right: -200px;
 }
 header .circles .circle.i {
-  animation-delay: 2.5s;
+  animation-delay: 2s;
 }
 
 header .text {
@@ -135,13 +135,6 @@ header .hdr-bg {
   width: 80%; height: 80%;
   background: 50% 50% / contain no-repeat url("materials/images/Shape1.png");
   opacity: 0.25;
-}
-
-header #msg {
-  position: absolute;
-  top: 2px; right: 2px;
-  opacity: 0.18;
-  pointer-events: none;
 }
 
 #navbar {
@@ -223,7 +216,7 @@ section#main {
   border-radius: 50%;
   transform: translateY(100%);
   transition: transform 0.5s;
-  transition-delay: 1.2s;
+  transition-delay: 1.5s;
 }
 .loaded #main .rounded-border div {
   transform: none;
@@ -325,12 +318,21 @@ section#main {
 
 #main .IDE-container {
   width: 100%;
-  height: 105vh;
-  background: var(--col3);
+  height: 250vh;
   position: relative;
-  overflow: hidden;
 }
-#main .IDE-container div {
+#main .IDE {
+  width: 100%;
+  height: 100vh;
+  background: var(--col3);
+  overflow: hidden;
+  position: sticky;
+  top: 0;
+}
+body.overflow-start #main .IDE-container {
+  null;
+}
+#main .IDE-container .text {
   position: absolute;
 }
 #main .IDE-container #IDEBG {
@@ -345,8 +347,35 @@ section#main {
   color: white;
   font: 1.7em Roboto;
 }
+#main .IDE-container #IDEoverflow {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(45deg, var(--col1), var(--col2));
+  opacity: 0;
+}
+#main .IDE-container #IDEoverflow h3 {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+#main .IDE-container #IDEoverflow span {
+  position: absolute;
+  color: white;
+  font-size: 2em;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+#main .IDE-container #IDEoverflow svg {
+  width: 60px;
+}
+#main .IDE-container #IDEoverflow.visible h3 {opacity: 1; transition-delay: 0.3s;}
+#main .IDE-container #IDEoverflow.visible span {opacity: 0.5;}
 
-#main .svg-container {justify-content: space-around; width: 100%; align-items: start;}
+#main .svg-container {
+  justify-content: space-around;
+  width: 100%;
+  align-items: start;
+}
 #main .svg-container .android, #main .svg-container .web {
   width: 50%;
   padding: 80px 0px;
@@ -604,14 +633,16 @@ section#main {
   color: var(--col1);
 }
 
-#main #contacts .description li:hover .hint {
-  background: white;
-}
-#main #contacts .description li:hover .hint .icon {
-  color: var(--col1);
-}
-#main #contacts .description li:hover .hint .text {
-  max-width: 150px;
+@media (min-width: 800px) {
+  #main #contacts .description li:hover .hint {
+    background: white;
+  }
+    #main #contacts .description li:hover .hint .icon {
+      color: var(--col1);
+    }
+    #main #contacts .description li:hover .hint .text {
+      max-width: 150px;
+    }
 }
 
 footer {
@@ -901,9 +932,10 @@ footer .circles .circle.s {
     width: 100%;
     padding: 60px 0px;
   }
+  #main .svg-container img {opacity: 1;}
   #main .svg-container .android img {height: 210px;}
   #main .svg-container .web img {height: 180px;}
-  #main .svg-container .android .title, #main .svg-container .web .title {font-size: 2.2em;}
+  #main .svg-container .android .title, #main .svg-container .web .title {font-size: 2.2em; opacity: 1;}
   #main .svg-container .example-button {font-size: 2em;}
   #main .svg-container .android .example-button {right: 5%;}
   #main .svg-container .web .example-button {left: 5%;}
@@ -993,7 +1025,7 @@ footer .circles .circle.s {
   footer span {padding: 0px 20px;}
 
   #overflowContainer .overflow {
-    width: 100%;
+    width: 95%;
     padding: 20px 0px;
     border-radius: 26px;
   }
