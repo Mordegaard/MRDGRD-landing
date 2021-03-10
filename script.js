@@ -41,8 +41,8 @@ window.onload = function() {
     id("loadingLogo").style.transform = "none";
     id("loadingLogoAnimation").beginElement();
     setTimeout(() => {
-      var y = id("headerLogo").offsetTop;
-      var x = id("headerLogo").offsetLeft;
+      var y = id("headerLogo").getBoundingClientRect().top;
+      var x = id("headerLogo").getBoundingClientRect().left;
       id("loading").getElementsByClassName("logo")[0].style.top = y + 'px';
       id("loading").getElementsByClassName("logo")[0].style.left = x + 'px';
       id("loading").getElementsByClassName("logo")[0].style.transform = "none";
@@ -98,7 +98,7 @@ window.onload = function() {
       //if (scr > ide.top - window.innerHeight) id("IDEBG").style.marginTop = (scr - ide.top)/3 + 'px';
       if (scr > ide.top && scr < ide.top + ide.height) {
         document.body.classList.add("overflow-start");
-        ide.overflow.style.opacity = (scr-ide.top)/ide.top*2-0.15;
+        ide.overflow.style.opacity = (scr-ide.top)/ide.top*3-0.15;
         window.screen.width > 800 ? ide.bg.style.backgroundSize = (100 + (scr-ide.top)/10) + '%' : ide.bg.style.backgroundSize = 'auto ' + (100 + (scr-ide.top)/10) + '%';
       }
       else {
@@ -106,7 +106,7 @@ window.onload = function() {
         ide.bg.style.backgroundSize = "";
         document.body.classList.remove("overflow-start");
       }
-      if (scr > ide.top * 1.5) ide.overflow.classList.add("visible"); else ide.overflow.classList.remove("visible");
+      if (scr > ide.top * 1.33) ide.overflow.classList.add("visible"); else ide.overflow.classList.remove("visible");
       if (scr > ide.top + ide.height) {
         id("IDEoverflow").style.opacity = 1;
         document.body.classList.add("overflow-end");
