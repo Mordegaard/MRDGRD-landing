@@ -293,9 +293,9 @@ section#main {
   flex-wrap: wrap;
 }
 #main #aboutMe .social-links .links a {
-  margin: 20px;
+  margin: 10px;
   position: relative;
-  height: 128px;
+  height: 95px;
   color: var(--col2);
   transition: color 0.25s;
 }
@@ -309,8 +309,8 @@ section#main {
 }
 #main #aboutMe .social-links .links svg.inner {
   position: absolute;
-  width: 64px;
-  height: 64px;
+  width: 54px;
+  height: 54px;
   z-index: 2;
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
@@ -897,7 +897,7 @@ footer .circles .circle.s {
     height: 156px; min-width: 156px; width: 156px;
   }
   #main #aboutMe #social .image {font-size: 1.5em;}
-  #main #aboutMe .about-me .description {font-size: 1.5em;}
+  #main #aboutMe .about-me .description {font-size: 22px;}
   #main #aboutMe .about-me, #main #aboutMe .social-links {
     width: 100%;
     font-size: 1.5em;
@@ -1005,7 +1005,7 @@ footer .circles .circle.s {
   }
   #main #contacts .description {
     margin: 10px 0 0 0;
-    font-size: 2em;
+    font-size: 22px;
     padding: 18px;
   }
   #main #contacts .description li {
@@ -1027,7 +1027,7 @@ footer .circles .circle.s {
   }
 
   footer {
-    font-size: 2em;
+    font-size: 18px;
     padding: 100px 0px;
     visibility: hidden;
   }
@@ -1051,11 +1051,12 @@ footer .circles .circle.s {
   #overflowContainer .overflow .list {
     display: flex;
     width: 100%;
-    flex-wrap: wrap;
+    overflow-x: scroll;
   }
   #overflowContainer .overflow .list li {
     margin: 0px 4px;
     font-size: 2em;
+    white-space: nowrap;
   }
   #overflowContainer .overflow .list label {margin: 4px 0px;}
   #overflowContainer .overflow .webExample, #overflowContainer .overflow .androidExample, #overflowContainer .overflow .example-description {width: 100%;}
@@ -1074,6 +1075,10 @@ footer .circles .circle.s {
     text-align: center;
     border-radius: 32px;
     border-width: 6px;
+  }
+  #overflowContainer .overflow .example-list {
+    margin: 0;
+    width: 100%;
   }
 
 }

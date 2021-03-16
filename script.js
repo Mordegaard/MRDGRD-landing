@@ -62,8 +62,7 @@ window.onload = function() {
   var header = id("hdr");
   var navbar = id("navbar");
   var overflow = id("overflowContainer");
-  var example;
-  window.screen.width > 800 ? example = cl("example-button") : example = [cl("android")[0], cl("web")[0]];
+  var example, start_mult;
   var ide = {
     bg: id("IDEBG"),
     overflow: id("IDEoverflow"),
@@ -85,8 +84,19 @@ window.onload = function() {
     ],
     positionX: [1,2,3,4,5,6,13,14,15,16,17,18],
     positionY: [1,2,3,4,5,6,13,14,15,16,17,18],
+    params: {
+      start: 1.2,
+      opac: 1,
+      text: 0
+    }
   }
   var idePosLength = ide.positionX.length;
+  if (window.screen.width > 800) {
+    example = cl("example-button");
+  } else {
+    example = [cl("android")[0], cl("web")[0]];
+    ide.params.start = 1.1; ide.params.text = 0.2;
+  }
 
   document.addEventListener("scroll", function() {
     requestAnimationFrame(scroll);
@@ -95,18 +105,18 @@ window.onload = function() {
   function scroll() {
       scr = window.scrollTop || window.pageYOffset;
       scr > header.offsetHeight ? navbar.classList.add("visible") : navbar.classList.remove("visible");
-      //if (scr > ide.top - window.innerHeight) id("IDEBG").style.marginTop = (scr - ide.top)/3 + 'px';
-      if (scr > ide.top && scr < ide.top + ide.height) {
+      var start = ide.top*ide.params.start;
+      if (scr > start && scr < ide.top + ide.height) {
         document.body.classList.add("overflow-start");
-        ide.overflow.style.opacity = (scr-ide.top)/ide.top*3-0.15;
-        window.screen.width > 800 ? ide.bg.style.backgroundSize = (100 + (scr-ide.top)/10) + '%' : ide.bg.style.backgroundSize = 'auto ' + (100 + (scr-ide.top)/10) + '%';
+        ide.overflow.style.opacity = (scr-start)/start*3-0.15;
+        window.screen.width > 800 ? ide.bg.style.backgroundSize = (100 + (scr-start)/10) + '%' : ide.bg.style.backgroundSize = 'auto ' + (100 + (scr-start)/10) + '%';
       }
       else {
         ide.overflow.style.opacity = 0;
         ide.bg.style.backgroundSize = "";
         document.body.classList.remove("overflow-start");
       }
-      if (scr > ide.top * 1.33) ide.overflow.classList.add("visible"); else ide.overflow.classList.remove("visible");
+      if (scr > ide.top * (1.66-ide.params.text)) ide.overflow.classList.add("visible"); else ide.overflow.classList.remove("visible");
       if (scr > ide.top + ide.height) {
         id("IDEoverflow").style.opacity = 1;
         document.body.classList.add("overflow-end");
