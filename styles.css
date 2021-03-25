@@ -97,11 +97,11 @@ header .circles .circle {
 header .circles .circle.f {
   width: 600px; height: 600px;
   top: -300px;
-  left: 0px;
+  right: 0px;
 }
 header .circles .circle.s {
   top: 22%;
-  right: -200px;
+  left: -200px;
 }
 header .circles .circle.i {
   animation-delay: 2s;
@@ -136,6 +136,25 @@ header .hdr-bg {
   background: 50% 50% / contain no-repeat url("materials/images/Shape1.png");
   opacity: 0.25;
 }
+header .header-navbar {
+  position: absolute;
+  top: 0px; left: 0;
+}
+header .header-navbar div {
+  padding: 12px;
+  position: relative;
+}
+header .header-navbar div:after {
+  content: "";
+  position: absolute;
+  top: 100%; left: 0;
+  width: 75%; height: 2px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.75), transparent);
+}
+header .header-navbar a {
+  padding: 0px 18px;
+  color: rgba(255,255,255,0.75);
+}
 
 #navbar {
   position: fixed;
@@ -158,7 +177,7 @@ header .hdr-bg {
   height: 100%;
   margin: 0px 20px;
 }
-#navbar .links a {
+#navbar .links a.navbar-anchor {
   display: flex;
   align-items: center;
   padding: 0px 18px;
@@ -167,7 +186,7 @@ header .hdr-bg {
   transition: color 0.2s;
   font-size: 18px;
 }
-#navbar .links a:after {
+#navbar .links a.navbar-anchor:after {
   content: "";
   position: absolute;
   bottom: 0; left: 0;
@@ -176,10 +195,10 @@ header .hdr-bg {
   transform: scaleX(0.66);
   background: linear-gradient(90deg, var(--col1), var(--col2));
 }
-#navbar .links a:hover, #navbar .links a:focus {
+#navbar .links a.navbar-anchor:hover, #navbar .links a.navbar-anchor:focus {
   color: var(--col1-dark);
 }
-#navbar .links a:hover:after, #navbar .links a:focus:after {
+#navbar .links a.navbar-anchor:hover:after, #navbar .links a.navbar-anchor:focus:after {
   min-height: 3px;
   transform: scaleX(1);
 }
@@ -295,7 +314,7 @@ section#main {
 #main #aboutMe .social-links .links a {
   margin: 10px;
   position: relative;
-  height: 95px;
+  height: 122px;
   color: var(--col2);
   transition: color 0.25s;
 }
@@ -309,8 +328,8 @@ section#main {
 }
 #main #aboutMe .social-links .links svg.inner {
   position: absolute;
-  width: 54px;
-  height: 54px;
+  width: 65px;
+  height: 65px;
   z-index: 2;
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
@@ -932,7 +951,7 @@ footer .circles .circle.s {
     box-shadow: 0px 2px 36px -12px rgba(0,0,0,0.66)
   }
   #navbar .links .title {margin: 0;}
-  #navbar .links a {
+  #navbar .links a.navbar-anchor {
     font-size: 1.2em;
     padding: 0px 10px;
   }
@@ -1079,6 +1098,12 @@ footer .circles .circle.s {
   #overflowContainer .overflow .example-list {
     margin: 0;
     width: 100%;
+  }
+  #main #aboutMe .social-links .links a {
+    height: 95px;
+  }
+  #main #aboutMe .social-links .links svg.inner {
+    width: 54px; height: 54px;
   }
 
 }
