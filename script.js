@@ -1,15 +1,3 @@
-var firebaseConfig = {
-    apiKey: "AIzaSyAP32_lqMymoNq6o0GnuTfvCzfomwDvbac",
-    authDomain: "mordegaard-blgspt.firebaseapp.com",
-    databaseURL: "https://mordegaard-blgspt.firebaseio.com",
-    projectId: "mordegaard-blgspt",
-    storageBucket: "mordegaard-blgspt.appspot.com",
-    messagingSenderId: "666333481438",
-    appId: "1:666333481438:web:30fee7393125fa23c2354f",
-    measurementId: "G-B56B297SCK"
-  };
-firebase.initializeApp(firebaseConfig);
-
 function id(bl) {
   return document.getElementById(bl);
 }
@@ -58,7 +46,6 @@ window.onload = function() {
   }
 
   var scr = 0;
-  var sended = false;
   var header = id("hdr");
   var navbar = id("navbar");
   var overflow = id("overflowContainer");
@@ -170,6 +157,40 @@ window.onload = function() {
   id("darkFilter").addEventListener("click", closeOverflow);
   id("closeOverflow").addEventListener("click", closeOverflow);
 
+  var form = id("sendMessage"), sended = false;
+  form.onsubmit = function(e) {
+    e.preventDefault();
+    if (form.elements.contacts.value && form.elements.description.value && !sended) {
+      var name = form.elements.contacts.value.slice(0, 128);
+      var text = form.elements.description.value.slice(0, 1024);
+      var date = new Date();
+      var btn = form.elements.submit.parentElement;
+      btn.classList.add("sending");
+      fetch("https://mrdgrd.herokuapp.com/add-feedback-message", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: name,
+          description: text,
+          date: date,
+        })
+      }).then(res=>{
+        if (res.ok) {
+          btn.innerText = "Ваше сообщение\r\n успешно отправлено";
+          btn.classList.remove("sending");
+          btn.classList.add("sended");
+          sended = true;
+        } else {
+          btn.classList.remove("sending");
+          alert("Произошла неизвестная ошибка при отправке");
+        }
+      });
+    }
+    return false;
+  }
+
   for (var i=0; i<idePosLength; i++) {
     var block = document.createElement('span');
     var x = rand(ide.positionX.length), y = rand(ide.positionY.length);
@@ -181,42 +202,4 @@ window.onload = function() {
     ide.positionX.splice(x,1); ide.positionY.splice(y,1);
   }
 
-  firebase.auth().signInAnonymously()
-  .then((user) => {
-    var form = id("sendMessage");
-    var usr = user.user.uid;
-    form.onsubmit = function(e) {
-      e.preventDefault();
-      if (form.elements.contacts.value && form.elements.description.value && !sended) {
-        var name = form.elements.contacts.value.slice(0, 128);
-        var text = form.elements.description.value.slice(0, 1024);
-        var database = firebase.database();
-        var date = new Date();
-        var id = date.getTime();
-        var btn = form.elements.submit.parentElement;
-        btn.classList.add("sending");
-        database.ref('clients/'+usr).child(id).once('value', function(snapshot) {
-          if (!snapshot.exists()) {
-            database.ref('clients/'+usr+"/"+id).set({
-              contacts: name,
-              description: text,
-              time: date.toString(),
-            }).then(() => {
-              btn.innerText = "Ваше сообщение\r\n успешно отправлено";
-              btn.classList.remove("sending");
-              btn.classList.add("sended");
-              sended = true;
-            }).catch((e) => {
-              btn.classList.remove("sending");
-              alert("Произошла неизвестная ошибка при отправке");
-            });
-          }
-        });
-      }
-      return false;
-    }
-  })
-  .catch((error) => {
-    console.warn(error.code, error.message);
-  });
 }

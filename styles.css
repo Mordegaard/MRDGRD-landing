@@ -1105,5 +1105,8 @@ footer .circles .circle.s {
   #main #aboutMe .social-links .links svg.inner {
     width: 54px; height: 54px;
   }
+  header .header-navbar a {
+    font-size: 18px;
+  }
 
 }
